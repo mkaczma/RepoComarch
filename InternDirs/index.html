@@ -31,10 +31,12 @@
 				  		<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 					</div>
 				</div>
-				<div class="small-6 columns"><a href="#">Podblok 002</a>
-					<div data-alert class="alert-box alert round">
-						  This is an alert - alert that is rounded.
-						  <a href="#" class="close">&times;</a>
+				<div onclick="alert('tekst')">
+					<div class="small-6 columns"><a href="#">Podblok 002</a>
+						<div data-alert class="alert-box alert round">
+							  This is an alert - alert that is rounded.
+							  <a href="#" class="close">&times;</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -59,11 +61,87 @@
 		</div>
 	</div>
 
+	<div>
+		<div>
+					<div class="small-6 columns"><a id="przycisk" href="#">Czlowiek</a>
+					</div>
+				</div>
+	</div>
+
 
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
+    </script>
+
+    <script type="text/javascript">
+
+    	document.getElementById('przycisk').onclick = function(){pobieramyCzlowieka();}
+
+    	function pobieramyCzlowieka(){
+    		var imie = getName();
+    		console.log('pobrano imie: ' + imie);
+    		var nazwisko = getSurname();
+    		console.log('pobrano nazwisko: ' + nazwisko);
+    		var wiek = getAge();
+    		console.log('pobrano wiek: ' + wiek);
+
+    		var osoba = new _czlowiek(imie, nazwisko, wiek);
+    		var human = new _czlowiek('Marian', 'Nowak', 67);
+
+    		osoba.przedstawSie();
+    		human.przedstawSie();
+    	}
+
+    	function getName(){
+    		while(true){
+	    		var imie = prompt('Podaj swoje imię:', 'Jan');
+		        if (imie != null && imie.length > 0) {
+		            console.log('Imie: ' + imie);
+		            return imie;
+		        } else {
+		            alert('Nie podano imienia');
+		        }
+	    	}
+    	}
+
+    	function getSurname(){
+    		while(true){
+	    		var nazwisko = prompt('Podaj swoje nazwisko:', 'Kowalski');
+		        if (nazwisko != null && nazwisko.length > 0) {
+		            console.log('nazwisko: ' + nazwisko);
+		            return nazwisko;
+		        } else {
+		            alert('Nie podano nazwiska');
+		        }
+	    	}
+    	}
+
+    	function getAge(){
+    		while(true){
+	    		var wiek = prompt('Podaj swoj wiek:', '18');
+		        if (wiek != null && wiek.length > 0) {
+		        	if(!isNaN(wiek)){
+			            console.log('Wiek: ' + wiek);
+			            return wiek;
+		        	} else {
+		        		alert('Wiek musi byc liczba');
+		        	}
+		    	} else {
+		            alert('Nie podano wieku');
+		        }
+	    	}
+    	}
+
+    	function _czlowiek(imie, nazwisko, wiek){
+    		this.imie = imie;
+    		this.nazwisko = nazwisko;
+    		this.wiek = wiek;
+    		this.przedstawSie = function() {
+    			console.log('Nowy czlowiek. Imie: ' + this.imie + ", nazwisko: " + this.nazwisko + ", wiek: " + wiek);
+    		}
+    	}
     </script>
 </body>
 </html>
