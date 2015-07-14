@@ -77,23 +77,6 @@
 
     <script type="text/javascript">
 
-    	document.getElementById('przycisk').onclick = function(){pobieramyCzlowieka();}
-
-    	function pobieramyCzlowieka(){
-    		var imie = getName();
-    		console.log('pobrano imie: ' + imie);
-    		var nazwisko = getSurname();
-    		console.log('pobrano nazwisko: ' + nazwisko);
-    		var wiek = getAge();
-    		console.log('pobrano wiek: ' + wiek);
-
-    		var osoba = new _czlowiek(imie, nazwisko, wiek);
-    		var human = new _czlowiek('Marian', 'Nowak', 67);
-
-    		osoba.przedstawSie();
-    		human.przedstawSie();
-    	}
-
     	function getName(){
     		while(true){
 	    		var imie = prompt('Podaj swoje imię:', 'Jan');
@@ -139,9 +122,42 @@
     		this.nazwisko = nazwisko;
     		this.wiek = wiek;
     		this.przedstawSie = function() {
-    			console.log('Nowy czlowiek. Imie: ' + this.imie + ", nazwisko: " + this.nazwisko + ", wiek: " + wiek);
+    			console.log('Na imie mam ' + imie + ", moje nazwisko to " + nazwisko + ", oraz mam " + wiek + " lat.");
     		}
     	}
+
+	$(document).ready(function(){
+    		var imie = getName();
+    		console.log('pobrano imie: ' + imie);
+    		var nazwisko = getSurname();
+    		console.log('pobrano nazwisko: ' + nazwisko);
+    		var wiek = getAge();
+    		console.log('pobrano wiek: ' + wiek);
+
+    		var osoba = new _czlowiek(imie, nazwisko, wiek);
+    		var human = new _czlowiek('Marian', 'Nowak', 67);
+
+    		osoba.przedstawSie();
+    		human.przedstawSie();
+	})
+
+	$('a#przycisk').bind({
+		'click':function(){
+    		var imie = getName();
+    		console.log('pobrano imie: ' + imie);
+    		var nazwisko = getSurname();
+    		console.log('pobrano nazwisko: ' + nazwisko);
+    		var wiek = getAge();
+    		console.log('pobrano wiek: ' + wiek);
+
+    		var osoba = new _czlowiek(imie, nazwisko, wiek);
+    		var human = new _czlowiek('Marian', 'Nowak', 67);
+
+    		osoba.przedstawSie();
+    		human.przedstawSie();			
+		}
+	})
+
     </script>
 </body>
 </html>
